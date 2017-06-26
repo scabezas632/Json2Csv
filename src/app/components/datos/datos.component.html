@@ -1,0 +1,90 @@
+<body ng-app="csvApp">
+  <br>
+  <div ng-controller="csvController" class="container" ng-cloack>
+    <h1>Exportar JSON a CSV utilizando Angular JS</h1>
+    <br>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Rut</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let k of datos | keys; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ datos[k].nombre + " " + datos[k].apellido }}</td>
+              <td>{{ datos[k].rut }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <button type="button" class="btn btn-default" ng-csv="datos" filename="Datos.csv" csv-header="['Id', 'Primer Nombre', 'Segundo Nombre', 'Primer Apellido', 'Segundo Apellido', 'Fecha Nacimiento']" charset="utf-8"><span class="glyphicon glyphicon-download-alt">&nbsp;</span>Descargar CSV</button>
+    <br>
+    <br>
+  </div>
+  <script type="text/javascript">
+
+    var app = angular.module("csvApp", ["ngSanitize", "ngCsv"]);
+
+    app.controller("csvController", ["$scope",
+    function($scope) {
+      $scope.datos = [{
+        id: 1,
+        primerNombre: 'Juan',
+        segundoNombre: 'Mario',
+        primerApellido: 'Perez',
+        segundoApellido: 'Maldonado',
+        fechaNacimiento: '23-12-1985'
+      }, {
+        id: 2,
+        primerNombre: 'Jorge',
+        segundoNombre: 'Alfonzo',
+        primerApellido: 'Quinto',
+        segundoApellido: 'Marroquin',
+        fechaNacimiento: '15-01-1988'
+      }, {
+        id: 3,
+        primerNombre: 'Carlos',
+        segundoNombre: 'Alberto',
+        primerApellido: 'Vargas',
+        segundoApellido: 'Martinez',
+        fechaNacimiento: '09-03-1990'
+      }, {
+        id: 4,
+        primerNombre: 'Mario',
+        segundoNombre: 'Alvaro',
+        primerApellido: 'Hernadez',
+        segundoApellido: 'Morales',
+        fechaNacimiento: '23-02-1984'
+      }, {
+        id: 5,
+        primerNombre: 'Marlon',
+        segundoNombre: 'Federico',
+        primerApellido: 'Lopez',
+        segundoApellido: 'Padilla',
+        fechaNacimiento: '01-03-1976'
+      }, {
+        id: 6,
+        primerNombre: 'Daniel',
+        segundoNombre: 'Francisco',
+        primerApellido: 'Herrera',
+        segundoApellido: 'Perdomo',
+        fechaNacimiento: '22-03-1989'
+      }, {
+        id: 7,
+        primerNombre: 'Cesar',
+        segundoNombre: 'Jaime',
+        primerApellido: 'Arroche',
+        segundoApellido: 'Pedrosa',
+        fechaNacimiento: '18-02-1987'
+      }];
+    }
+    ]);
+
+  </script>
+</body>
